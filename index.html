@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aggarwal Steels — Buy Steel Online | HR, CR, GP, SS | Faridabad</title>
+  <meta name="description" content="Buy steel online from Aggarwal Steels — Faridabad's trusted supplier since 1990. HR Sheets, CR Coils, Galvanised, Stainless Steel, Boiler & Special Grade. Best prices with GST invoice." />
+  <meta name="keywords" content="buy HR steel online, CR coils Faridabad, galvanised sheets, stainless steel supplier India, boiler quality plates, SAILMA steel, Aggarwal Steels" />
+  <meta property="og:title" content="Aggarwal Steels — Buy Steel Online" />
+  <meta property="og:description" content="Quality Steel. Delivered to Your Door. Browse HR, CR, GP, SS and more." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>" />
+
+  <!-- Local Business Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "Aggarwal Steels",
+    "description": "Leading steel supplier in Faridabad since 1990. HR plates, CR coils, Galvanised, Stainless Steel, Boiler plates.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Plot No. 680, Sec 59",
+      "addressLocality": "Faridabad",
+      "addressRegion": "Haryana",
+      "postalCode": "121004",
+      "addressCountry": "IN"
+    },
+    "telephone": "+918800885195",
+    "email": "info@aggarwalsteels.com",
+    "url": "https://www.aggarwalsteels.com",
+    "foundingDate": "1990"
+  }
+  </script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     NAVIGATION
+     ═══════════════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <!-- Logo -->
+      <a class="nav-logo" href="#" onclick="showPage('home'); return false;">
+        <img src="images/logo.png" alt="Aggarwal Steels" class="nav-logo-img" />
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="nav-links">
+        <a href="#" id="nav-home" class="active" onclick="showPage('home'); return false;">Home</a>
+        <a href="#" id="nav-products" onclick="showPage('home','#categories'); return false;">Products</a>
+        <a href="#" id="nav-about" onclick="showPage('home','#why-us'); return false;">About Us</a>
+        <a href="#" id="nav-contact" onclick="showPage('contact'); return false;">Contact</a>
+      </div>
+
+      <!-- Cart + Hamburger -->
+      <div class="nav-right">
+        <button class="cart-btn" id="cartNavBtn" onclick="showPage('cart'); return false;" aria-label="View cart">
+          🛒 Cart
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+        <button class="nav-hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMobileMenu()">✕</button>
+  <a href="#" onclick="showPage('home'); toggleMobileMenu(); return false;">🏠 Home</a>
+  <a href="#" onclick="showPage('home','#categories'); toggleMobileMenu(); return false;">📦 Products</a>
+  <a href="#" onclick="showPage('contact'); toggleMobileMenu(); return false;">📞 Contact</a>
+  <a href="#" onclick="showPage('cart'); toggleMobileMenu(); return false;">🛒 Cart</a>
+</div>
+
+<!-- Toast Container -->
+<div id="toast-container"></div>
+
+<!-- Floating Cart -->
+<div id="floating-cart-preview" onclick="showPage('cart')">
+  <span style="font-size:1.4rem">🛒</span>
+  <div class="fcp-text">
+    <div class="fcp-items" id="fcpItems">0 items in cart</div>
+    <div class="fcp-total" id="fcpTotal">₹0</div>
+  </div>
+  <button class="btn btn-primary btn-sm" style="margin-left:8px">View Cart →</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE: HOME
+     ═══════════════════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span class="dot"></span>
+          India's Trusted Steel Marketplace
+        </div>
+        <h1 class="hero-title font-display">
+          Quality Steel.<br>
+          <span class="accent">Delivered to</span><br>
+          Your Door.
+        </h1>
+        <p class="hero-desc">
+          From HR sheets to Stainless Steel — browse, configure, and order with full GST compliance. 
+          Aggarwal Steels brings Faridabad's finest steel straight to your facility.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg" onclick="showPage('home','#categories')">
+            Browse Products →
+          </button>
+          <button class="btn btn-secondary btn-lg" onclick="showPage('contact')">
+            Get a Quote
+          </button>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="stat-num">35+</div>
+            <div class="stat-label">Years in Business</div>
+          </div>
+          <div class="hero-stat">
+            <div class="stat-num">500+</div>
+            <div class="stat-label">Happy Clients</div>
+          </div>
+          <div class="hero-stat">
+            <div class="stat-num">7</div>
+            <div class="stat-label">Product Categories</div>
+          </div>
+          <div class="hero-stat">
+            <div class="stat-num">ISI</div>
+            <div class="stat-label">Certified Quality</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICE TICKER -->
+  <div id="price-ticker">
+    <div class="container">
+      <div class="ticker-wrap">
+        <div class="ticker-label">📈 Live Rates</div>
+        <div class="ticker-scroll">
+          <div class="ticker-inner" id="tickerInner">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section id="categories" class="section">
+    <div class="container">
+      <div class="section-tag">Our Products</div>
+      <h2 class="section-title">Browse by <span>Category</span></h2>
+      <p class="section-subtitle">Select your steel category to configure grade, size, and quantity. Live price calculation with GST included.</p>
+      <div class="categories-grid" id="categoriesGrid">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="why-us" class="section">
+    <div class="container">
+      <div style="max-width:600px">
+        <div class="section-tag">Why Aggarwal Steels</div>
+        <h2 class="section-title">Built on <span>Trust</span> &amp; Quality</h2>
+        <p class="section-subtitle">Three decades of serving India's manufacturing sector with integrity, quality, and competitive pricing.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">🏭</div>
+          <div class="why-title">Mill-Direct Pricing</div>
+          <div class="why-desc">We source directly from SAIL, Tata Steel, and JSW — no middlemen means better prices for you.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">📋</div>
+          <div class="why-title">GST Compliant Invoicing</div>
+          <div class="why-desc">Every order comes with a proper GST invoice. IGST or CGST+SGST auto-calculated based on your delivery state.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🚚</div>
+          <div class="why-title">Pan-India Delivery</div>
+          <div class="why-desc">We deliver to all major industrial hubs across India. Faridabad to your factory gate.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🏅</div>
+          <div class="why-title">ISI Certified Materials</div>
+          <div class="why-desc">All products conform to BIS/IS standards. Mill test certificates provided on request.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">⚡</div>
+          <div class="why-title">Fast Order Processing</div>
+          <div class="why-desc">Orders confirmed within 24 hours. Cutting and slitting available at our Sector 59 facility.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🔒</div>
+          <div class="why-title">Secure Transactions</div>
+          <div class="why-desc">Your order and personal data are secure. Privacy-first approach to B2B procurement.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO ORDER -->
+  <section id="how-to" class="section">
+    <div class="container">
+      <div class="text-center mb-lg">
+        <div class="section-tag" style="justify-content:center">Simple Process</div>
+        <h2 class="section-title">Order in <span>3 Easy Steps</span></h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-title">Browse &amp; Configure</div>
+          <div class="step-desc">Select your steel category, choose grade, thickness, width and quantity. Get instant price with GST.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-title">Add to Cart</div>
+          <div class="step-desc">Add products to your cart. Review your order, update quantities, and check the total with GST breakdown.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-title">Place Order</div>
+          <div class="step-desc">Enter your company and delivery details. Submit your order — our team confirms within 24 hours.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div id="trust-strip">
+    <div class="container">
+      <div class="trust-inner">
+        <div class="trust-item">
+          <div class="trust-icon">🏭</div>
+          <div class="trust-text">
+            <div class="t-num">1990</div>
+            <div class="t-label">Established Since</div>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">📦</div>
+          <div class="trust-text">
+            <div class="t-num">10,000+</div>
+            <div class="t-label">MT Delivered Monthly</div>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">🌐</div>
+          <div class="trust-text">
+            <div class="t-num">All India</div>
+            <div class="t-label">Delivery Available</div>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">📞</div>
+          <div class="trust-text">
+            <div class="t-num">24hr</div>
+            <div class="t-label">Order Confirmation</div>
+          </div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">✅</div>
+          <div class="trust-text">
+            <div class="t-num">ISI</div>
+            <div class="t-label">Certified Products</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+            <img src="images/logo.png" alt="Aggarwal Steels" style="height:42px;width:auto;object-fit:contain" />
+          <p class="fb-tagline">Faridabad's trusted steel supplier since 1990. Quality, reliability, and competitive pricing for India's manufacturing sector.</p>
+          <div style="margin-top:16px;display:flex;gap:12px">
+            <span class="badge badge-gold">ISI Certified</span>
+            <span class="badge badge-gold">GST Registered</span>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="#" onclick="openProduct('hr'); return false;">HR Sheets &amp; Coils</a></li>
+            <li><a href="#" onclick="openProduct('cr'); return false;">CR Sheets &amp; Coils</a></li>
+            <li><a href="#" onclick="openProduct('gp'); return false;">Galvanised Plain (GP)</a></li>
+            <li><a href="#" onclick="openProduct('gpsp'); return false;">GPSP Sheets</a></li>
+            <li><a href="#" onclick="openProduct('pmp'); return false;">PMP Plates</a></li>
+            <li><a href="#" onclick="openProduct('hrsg'); return false;">HR Special Grade</a></li>
+            <li><a href="#" onclick="openProduct('ss'); return false;">Stainless Steel</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#" onclick="showPage('home','#why-us'); return false;">About Us</a></li>
+            <li><a href="#" onclick="showPage('contact'); return false;">Contact Us</a></li>
+            <li><a href="#" onclick="showPage('cart'); return false;">My Cart</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+918800885195">📞 +91 8800885195</a></li>
+            <li><a href="mailto:info@aggarwalsteels.com">✉ info@aggarwalsteels.com</a></li>
+            <li><a href="#">📍 Plot No. 680, Sec 59, Faridabad, Haryana 121004</a></li>
+            <li><a href="#">🕐 Mon–Sat: 9:00 AM – 6:00 PM</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div style="background:rgba(0,0,0,.2)">
+      <div class="container">
+        <div class="footer-bottom">
+          <p>© 2025 Aggarwal Steels. All rights reserved. GST No: 06AABCA1234A1ZX</p>
+          <p>Crafted with ❤️ for India's Steel Industry</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div><!-- /page-home -->
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE: PRODUCT DETAIL
+     ═══════════════════════════════════════════════════════ -->
+<div id="page-product" class="page">
+  <div class="container">
+    <div class="product-breadcrumb" id="productBreadcrumb">
+      <a href="#" onclick="showPage('home'); return false;">Home</a>
+      <span>›</span>
+      <a href="#" onclick="showPage('home','#categories'); return false;">Products</a>
+      <span>›</span>
+      <span id="breadcrumbCat">Category</span>
+    </div>
+
+    <div class="product-layout">
+      <!-- Left: Info -->
+      <div class="product-info-col">
+        <div class="product-header">
+          <div class="product-category-tag" id="productCategoryTag">Category</div>
+          <h1 class="product-title" id="productTitle">Product Name</h1>
+          <p class="product-standard" id="productStandard">Standard</p>
+        </div>
+
+        <!-- Product Image -->
+        <div class="product-image-card" style="margin-bottom:24px">
+          <img id="productHeroImg" src="images/hr.png" alt="Product" />
+        </div>
+
+        <!-- Description -->
+        <div class="product-desc card-body" id="productDesc">
+          <!-- Filled by JS -->
+        </div>
+
+        <!-- Maker Logos -->
+        <div class="card" style="margin-bottom:24px">
+          <div class="card-body" id="makerLogos">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+
+        <!-- Specs Table -->
+        <div class="card" style="margin-bottom:24px">
+          <div class="card-body">
+            <h4 id="specsTableTitle" style="margin-bottom:16px;color:var(--text)">Technical Specifications</h4>
+            <table class="specs-table" id="specsTable">
+              <!-- Filled by JS -->
+            </table>
+          </div>
+        </div>
+
+        <!-- Applications -->
+        <div class="card">
+          <div class="card-body">
+            <h4 style="margin-bottom:12px;color:var(--text)">Common Applications</h4>
+            <div class="applications-grid" id="applicationsGrid">
+              <!-- Filled by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Configurator -->
+      <div>
+        <div class="configurator">
+          <div class="configurator-header">
+            <h3>Configure &amp; Price</h3>
+            <div class="price-per-mt">
+              <div class="pmt-label">Base Price</div>
+              <div class="pmt-val" id="confPricePerMT">₹--</div>
+              <div class="pmt-upd" id="confPriceUpd">per MT</div>
+            </div>
+          </div>
+          <div class="configurator-body">
+            <!-- Dynamic fields rendered by JS -->
+            <div id="configuratorFields"></div>
+
+            <!-- Qty -->
+            <div class="form-group">
+              <label class="form-label" for="confQty">Quantity (MT) <span>*</span></label>
+              <input type="number" id="confQty" class="form-control" placeholder="e.g. 5" min="1" max="10000" step="0.5" value="1" oninput="updatePriceCalc()" />
+              <div style="font-size:.75rem;color:var(--text-light);margin-top:4px">Minimum order: 1 MT</div>
+            </div>
+
+            <!-- Price Summary -->
+            <div class="price-summary" id="priceSummary">
+              <div class="price-row"><span>Base Price</span><span id="psBase">₹0</span></div>
+              <div class="price-row"><span>Quantity</span><span id="psQty">0 MT</span></div>
+              <div class="price-row"><span>Subtotal</span><span id="psSubtotal">₹0</span></div>
+              <div class="price-row"><span id="psGstLabel">GST (18%)</span><span id="psGst">₹0</span></div>
+              <div class="price-row total">
+                <span>Total Amount</span>
+                <span class="val" id="psTotal">₹0</span>
+              </div>
+            </div>
+            <div class="gst-note">* GST rate: 18% (HSN 7208–7229)</div>
+
+            <button class="btn btn-primary btn-full btn-lg" style="margin-top:16px" onclick="addToCart()">
+              🛒 Add to Cart
+            </button>
+            <button class="btn btn-outline btn-full" style="margin-top:10px;font-size:.82rem" onclick="showPage('contact')">
+              💬 Request Custom Quote
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /page-product -->
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE: CART
+     ═══════════════════════════════════════════════════════ -->
+<div id="page-cart" class="page">
+  <div class="container">
+    <div style="margin-bottom:28px;padding-top:28px">
+      <div class="product-breadcrumb">
+        <a href="#" onclick="showPage('home'); return false;">Home</a>
+        <span>›</span><span>My Cart</span>
+      </div>
+      <h2 style="color:var(--text)">🛒 My Cart</h2>
+    </div>
+
+    <div class="cart-layout">
+      <!-- Cart Items -->
+      <div>
+        <div class="cart-panel">
+          <div class="cart-panel-header">
+            <h3>Order Items</h3>
+            <span class="badge badge-navy" id="cartItemCount">0 items</span>
+          </div>
+
+          <!-- Empty state -->
+          <div class="cart-empty" id="cartEmpty">
+            <div class="ce-icon">📦</div>
+            <h3>Your cart is empty</h3>
+            <p>Browse our product categories and add items to your cart.</p>
+            <button class="btn btn-primary" style="margin-top:16px" onclick="showPage('home','#categories')">Browse Products →</button>
+          </div>
+
+          <!-- Items list -->
+          <div id="cartItemsList"></div>
+        </div>
+
+        <button class="btn btn-outline btn-sm" style="margin-top:16px" onclick="showPage('home','#categories')">
+          ← Continue Shopping
+        </button>
+      </div>
+
+      <!-- Order Summary -->
+      <div>
+        <div class="order-summary">
+          <div class="os-header"><h3>Order Summary</h3></div>
+          <div class="os-body">
+            <!-- Delivery State -->
+            <div class="form-group gst-type-selector">
+              <label class="form-label" for="deliveryState">Delivery State</label>
+              <select class="form-control" id="deliveryState" onchange="updateCartSummary()">
+                <option value="">-- Select State --</option>
+                <!-- Haryana = CGST+SGST, others = IGST -->
+                <option value="HR">Haryana (CGST + SGST)</option>
+                <option value="DL">Delhi</option>
+                <option value="UP">Uttar Pradesh</option>
+                <option value="RJ">Rajasthan</option>
+                <option value="MH">Maharashtra</option>
+                <option value="GJ">Gujarat</option>
+                <option value="PB">Punjab</option>
+                <option value="MP">Madhya Pradesh</option>
+                <option value="KA">Karnataka</option>
+                <option value="TN">Tamil Nadu</option>
+                <option value="WB">West Bengal</option>
+                <option value="TG">Telangana</option>
+                <option value="AP">Andhra Pradesh</option>
+                <option value="BR">Bihar</option>
+                <option value="OD">Odisha</option>
+                <option value="OTHER">Other State</option>
+              </select>
+              <div class="state-hint" id="gstTypeHint">Select state to determine GST type (IGST / CGST+SGST)</div>
+            </div>
+
+            <hr class="divider" />
+
+            <div id="cartSummaryRows">
+              <div class="os-row"><span>Subtotal (excl. GST)</span><span id="osSub">₹0</span></div>
+              <div id="gstBreakdown"></div>
+              <div class="os-row subtotal"><span>Total GST</span><span id="osGst">₹0</span></div>
+              <div class="os-row grand"><span>Grand Total</span><span class="os-val" id="osTotal">₹0</span></div>
+            </div>
+
+            <button class="btn btn-primary btn-full btn-lg" style="margin-top:20px" onclick="showPage('checkout')">
+              Proceed to Checkout →
+            </button>
+            <p style="font-size:.72rem;color:var(--text-light);text-align:center;margin-top:10px">
+              Prices shown are indicative. Final invoice issued after order confirmation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /page-cart -->
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE: CHECKOUT
+     ═══════════════════════════════════════════════════════ -->
+<div id="page-checkout" class="page">
+  <div class="container">
+    <div style="margin-bottom:28px;padding-top:28px">
+      <div class="product-breadcrumb">
+        <a href="#" onclick="showPage('home'); return false;">Home</a>
+        <span>›</span>
+        <a href="#" onclick="showPage('cart'); return false;">Cart</a>
+        <span>›</span><span>Checkout</span>
+      </div>
+      <h2 style="color:var(--text)">Secure Checkout</h2>
+    </div>
+
+    <!-- Order Confirm (hidden by default) -->
+    <div class="order-confirm card card-body" id="orderConfirm">
+      <div class="oc-icon">✅</div>
+      <h2>Order Placed Successfully!</h2>
+      <p class="oc-id">Order ID: <strong id="confirmOrderId">AGS-000000</strong></p>
+      <div class="oc-msg">
+        Thank you for your order! Our team will review your requirements and reach out within <strong>24 hours</strong> to confirm pricing, delivery schedule, and payment details. You'll receive a full GST quotation via email.
+      </div>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="showPage('home')">Back to Home</button>
+        <button class="btn btn-outline" onclick="showPage('home','#categories')">Browse More Products</button>
+      </div>
+    </div>
+
+    <!-- Checkout Form + Summary -->
+    <div class="checkout-layout" id="checkoutLayout">
+      <div class="checkout-form-card">
+        <form id="checkoutForm" novalidate onsubmit="submitOrder(event)">
+
+          <!-- Buyer Identity & Verification -->
+          <div class="form-section">
+            <div class="form-section-title">👤 Customer Identity & Verification</div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="buyerName">Full Name <span>*</span></label>
+                <input type="text" id="buyerName" class="form-control" placeholder="Rajesh Aggarwal" />
+                <div class="form-error" id="buyerNameErr">Name is required</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="coName">Company Name <span>*</span></label>
+                <input type="text" id="coName" class="form-control" placeholder="ABC Manufacturing Pvt. Ltd." />
+                <div class="form-error" id="coNameErr">Company name is required</div>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="gstin">GSTIN</label>
+                <input type="text" id="gstin" class="form-control" placeholder="22AAAAA0000A1Z5" maxlength="15" oninput="this.value=this.value.toUpperCase()" />
+                <div class="form-error" id="gstinErr">Invalid GSTIN format</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="panNo">PAN Number</label>
+                <input type="text" id="panNo" class="form-control" placeholder="AAAAA0000A" maxlength="10" oninput="this.value=this.value.toUpperCase()" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Phone OTP Verification -->
+          <div class="form-section">
+            <div class="form-section-title">📱 Phone Verification</div>
+            <div class="form-group">
+              <label class="form-label" for="buyerPhone">Phone Number <span>*</span></label>
+              <div class="otp-field-group">
+                <input type="tel" id="buyerPhone" class="form-control" placeholder="+91 98765 43210" maxlength="13" />
+                <button type="button" class="otp-send-btn" id="phoneOtpSendBtn" onclick="sendPhoneOtp()">Send OTP</button>
+              </div>
+              <div class="form-error" id="buyerPhoneErr">Enter a valid 10-digit phone number</div>
+              <div class="otp-status" id="phoneOtpStatus"></div>
+            </div>
+            <!-- Phone OTP Input (hidden by default) -->
+            <div id="phoneOtpSection" style="display:none">
+              <label class="form-label">Enter OTP sent to your phone</label>
+              <div class="otp-input-row">
+                <input type="text" maxlength="1" class="phone-otp-digit" oninput="handleOtpInput(this,'phone')" />
+                <input type="text" maxlength="1" class="phone-otp-digit" oninput="handleOtpInput(this,'phone')" />
+                <input type="text" maxlength="1" class="phone-otp-digit" oninput="handleOtpInput(this,'phone')" />
+                <input type="text" maxlength="1" class="phone-otp-digit" oninput="handleOtpInput(this,'phone')" />
+                <input type="text" maxlength="1" class="phone-otp-digit" oninput="handleOtpInput(this,'phone')" />
+                <input type="text" maxlength="1" class="phone-otp-digit" oninput="handleOtpInput(this,'phone')" />
+                <button type="button" class="otp-verify-btn" onclick="verifyPhoneOtp()">Verify</button>
+              </div>
+              <div class="otp-status" id="phoneVerifyStatus"></div>
+            </div>
+            <div id="phoneVerifiedBadge" style="display:none">
+              <span class="verified-badge">✓ Phone Verified</span>
+            </div>
+          </div>
+
+          <!-- Email OTP Verification -->
+          <div class="form-section">
+            <div class="form-section-title">✉️ Email Verification</div>
+            <div class="form-group">
+              <label class="form-label" for="buyerEmail">Email ID <span>*</span></label>
+              <div class="otp-field-group">
+                <input type="email" id="buyerEmail" class="form-control" placeholder="purchase@yourcompany.com" />
+                <button type="button" class="otp-send-btn" id="emailOtpSendBtn" onclick="sendEmailOtp()">Send OTP</button>
+              </div>
+              <div class="form-error" id="buyerEmailErr">Enter a valid email address</div>
+              <div class="otp-status" id="emailOtpStatus"></div>
+            </div>
+            <div id="emailOtpSection" style="display:none">
+              <label class="form-label">Enter OTP sent to your email</label>
+              <div class="otp-input-row">
+                <input type="text" maxlength="1" class="email-otp-digit" oninput="handleOtpInput(this,'email')" />
+                <input type="text" maxlength="1" class="email-otp-digit" oninput="handleOtpInput(this,'email')" />
+                <input type="text" maxlength="1" class="email-otp-digit" oninput="handleOtpInput(this,'email')" />
+                <input type="text" maxlength="1" class="email-otp-digit" oninput="handleOtpInput(this,'email')" />
+                <input type="text" maxlength="1" class="email-otp-digit" oninput="handleOtpInput(this,'email')" />
+                <input type="text" maxlength="1" class="email-otp-digit" oninput="handleOtpInput(this,'email')" />
+                <button type="button" class="otp-verify-btn" onclick="verifyEmailOtp()">Verify</button>
+              </div>
+              <div class="otp-status" id="emailVerifyStatus"></div>
+            </div>
+            <div id="emailVerifiedBadge" style="display:none">
+              <span class="verified-badge">✓ Email Verified</span>
+            </div>
+          </div>
+
+          <!-- Delivery Details -->
+          <div class="form-section">
+            <div class="form-section-title">🚚 Delivery Details</div>
+            <div class="form-group">
+              <label class="form-label" for="delAddress">Delivery Address <span>*</span></label>
+              <textarea id="delAddress" class="form-control" rows="3" placeholder="Plot / Building no., Street, Area, City"></textarea>
+              <div class="form-error" id="delAddressErr">Delivery address is required</div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="delPincode">Pincode <span>*</span></label>
+                <input type="text" id="delPincode" class="form-control" placeholder="110001" maxlength="6" />
+                <div class="form-error" id="delPincodeErr">Enter a valid 6-digit pincode</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="delState">State <span>*</span></label>
+                <select id="delState" class="form-control">
+                  <option value="">-- Select State --</option>
+                  <option>Haryana</option><option>Delhi</option><option>Uttar Pradesh</option>
+                  <option>Rajasthan</option><option>Maharashtra</option><option>Gujarat</option>
+                  <option>Punjab</option><option>Madhya Pradesh</option><option>Karnataka</option>
+                  <option>Tamil Nadu</option><option>West Bengal</option><option>Telangana</option>
+                  <option>Andhra Pradesh</option><option>Bihar</option><option>Odisha</option>
+                  <option>Jharkhand</option><option>Uttarakhand</option><option>Himachal Pradesh</option>
+                </select>
+                <div class="form-error" id="delStateErr">Please select a delivery state</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Special Instructions -->
+          <div class="form-section">
+            <div class="form-section-title">📝 Additional Notes</div>
+            <div class="form-group" style="margin-bottom:0">
+              <label class="form-label" for="orderNotes">Special Instructions</label>
+              <textarea class="form-control" id="orderNotes" rows="3" placeholder="Any cutting requirements, delivery schedule preferences, or special instructions..."></textarea>
+            </div>
+          </div>
+
+          <div style="margin-top:28px">
+            <button type="submit" class="btn btn-primary btn-full btn-lg" id="submitOrderBtn">
+              ✅ Place Order
+            </button>
+            <p style="font-size:.72rem;color:var(--text-light);text-align:center;margin-top:10px">
+              Phone & Email verification required. Our team will contact you within 24 hours.
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <!-- Checkout Summary -->
+      <div>
+        <div class="checkout-summary">
+          <div class="cs-header"><h3>Order Summary</h3></div>
+          <div class="cs-body" id="checkoutSummaryBody">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /page-checkout -->
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE: CONTACT
+     ═══════════════════════════════════════════════════════ -->
+<div id="page-contact" class="page">
+  <div class="container">
+    <div style="padding-top:50px;margin-bottom:8px">
+      <div class="section-tag">Get in Touch</div>
+      <h2 class="section-title">Contact <span>Aggarwal Steels</span></h2>
+      <p class="section-subtitle">Need a custom quote or have a question? Our team is ready to help you find the right steel solution.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="ci-icon">📍</div>
+          <div class="ci-body">
+            <h4>Office &amp; Yard</h4>
+            <p>Plot No. 680, Sector 59<br>Faridabad, Haryana 121004</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">📞</div>
+          <div class="ci-body">
+            <h4>Phone</h4>
+            <a href="tel:+918800885195">+91 88008 85195</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">✉️</div>
+          <div class="ci-body">
+            <h4>Email</h4>
+            <a href="mailto:info@aggarwalsteels.com">info@aggarwalsteels.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">🕐</div>
+          <div class="ci-body">
+            <h4>Business Hours</h4>
+            <p>Monday – Saturday: 9:00 AM – 6:00 PM<br>Sunday: Closed</p>
+          </div>
+        </div>
+        <!-- Map embed placeholder -->
+        <div style="border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);height:200px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;color:var(--text-light);font-size:.875rem">
+          📍 Plot 680, Sec 59, Faridabad
+        </div>
+      </div>
+
+      <div class="contact-form-card">
+        <h3 style="color:var(--text);margin-bottom:24px">Send us an Enquiry</h3>
+        <form id="contactForm" onsubmit="submitContactForm(event)">
+          <div class="form-group">
+            <label class="form-label" for="cName">Your Name <span>*</span></label>
+            <input type="text" id="cName" class="form-control" placeholder="Full name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cPhone">Phone <span>*</span></label>
+            <input type="tel" id="cPhone" class="form-control" placeholder="+91 XXXXX XXXXX" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cEmail">Email</label>
+            <input type="email" id="cEmail" class="form-control" placeholder="you@company.com" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cProduct">Product Interest</label>
+            <select id="cProduct" class="form-control">
+              <option value="">-- Select Product --</option>
+              <option>HR Sheets / Coils</option>
+              <option>CR Sheets / Coils</option>
+              <option>Galvanised Plain (GP)</option>
+              <option>GPSP Sheets</option>
+              <option>PMP Plates</option>
+              <option>HR Special Grade (Sailma / Boiler)</option>
+              <option>Stainless Steel</option>
+              <option>Multiple Products</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cMsg">Message <span>*</span></label>
+            <textarea id="cMsg" class="form-control" rows="4" placeholder="Describe your requirement (grade, thickness, quantity)..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">Send Enquiry →</button>
+        </form>
+      </div>
+    </div>
+
+    <div style="height:60px"></div>
+  </div>
+</div><!-- /page-contact -->
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE: ADMIN
+     ═══════════════════════════════════════════════════════ -->
+<div id="page-admin" class="page">
+  <div class="container">
+    <div style="padding-top:50px;margin-bottom:32px">
+      <div class="admin-badge">⚙️ Admin Panel</div>
+      <h2 style="color:var(--text)">Price Management</h2>
+      <p style="color:var(--text-mid)">Update product prices. Changes are saved locally and reflect immediately on the website.</p>
+    </div>
+
+    <!-- Login Card -->
+    <div class="admin-login-card" id="adminLoginCard">
+      <div class="admin-badge" style="margin-bottom:24px">🔐 Secure Login</div>
+      <h3 style="color:var(--text);margin-bottom:8px">Admin Access</h3>
+      <p style="color:var(--text-mid);font-size:.875rem;margin-bottom:24px">Enter your password to access the price management panel.</p>
+      <div class="form-group">
+        <label class="form-label" for="adminPass">Password</label>
+        <input type="password" id="adminPass" class="form-control" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')adminLogin()" />
+        <div class="form-error" id="adminPassErr">Incorrect password. Please try again.</div>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="adminLogin()">Login →</button>
+
+    </div>
+
+    <!-- Admin Panel (hidden until login) -->
+    <div id="adminPanel" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+        <div>
+          <span class="badge badge-green" style="margin-right:8px">✓ Logged In</span>
+          <span style="font-size:.82rem;color:var(--text-light)">Last updated: <span id="lastUpdatedTime">—</span></span>
+        </div>
+        <div style="display:flex;gap:10px">
+          <button class="btn btn-outline btn-sm" onclick="resetPrices()">↺ Reset to Defaults</button>
+          <button class="btn btn-dark btn-sm" onclick="adminLogout()">Logout</button>
+        </div>
+      </div>
+
+      <div class="admin-table-wrap">
+        <table class="admin-table" id="adminTable">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Product / Grade</th>
+              <th>HSN Code</th>
+              <th>Current Price (₹/MT)</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="adminTableBody">
+            <!-- Filled by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:20px;background:var(--surface-2);border-radius:var(--radius-sm);padding:16px;font-size:.82rem;color:var(--text-mid)">
+        ⚠️ <strong>Note:</strong> Prices stored on this device only. For production use, connect to a backend database.
+        Prices shown are ex-Faridabad (excluding GST and freight).
+      </div>
+    </div>
+  </div>
+</div><!-- /page-admin -->
+
+
+<script src="script.js"></script>
+</body>
+</html>
