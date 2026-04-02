@@ -840,7 +840,7 @@ function validateCheckout() {
   return valid;
 }
 
-function submitOrder(e) {
+async function submitOrder(e) {
   e.preventDefault();
   if (cart.length === 0) { showToast('Your cart is empty!', 'error'); return; }
   if (!phoneVerified) { showToast('Please verify your phone number with OTP first.', 'error'); return; }
@@ -867,6 +867,41 @@ function submitOrder(e) {
   order.gst   = order.subtotal * GST_RATE;
   order.total = order.subtotal + order.gst;
 
+  const btn = document.getElementById('submitOrderBtn');
+  const orgText = btn ? btn.innerHTML : '';
+  if (btn) btn.innerHTML = 'Processing...';
+
+  try {
+    let itemsText = order.items.map(i => `${i.name} - ${i.qty} MT @ ₹${i.pricePerMT} (Make: ${i.make || 'N/A'})`).join('\n');
+    let emailData = {
+      access_key: "582aaba0-a829-4b94-ac0e-e7055d8e4830",
+      subject: `New Steel Order: ${orderId} from ${order.company}`,
+      from_name: "Aggarwal Steels Portal",
+      Order_ID: orderId,
+      Company: order.company,
+      Contact_Person: order.buyer,
+      Phone: order.phone,
+      Email: order.email,
+      GSTIN: order.gstin,
+      Address: `${order.address}, PIN: ${order.pincode}, State: ${order.state}`,
+      Order_Notes: order.notes,
+      Items_Summary: itemsText,
+      Subtotal: `₹${order.subtotal}`,
+      GST: `₹${order.gst}`,
+      Total_Value: `₹${order.total}`
+    };
+
+    await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(emailData)
+    });
+  } catch (err) {
+    console.error("Web3Forms error:", err);
+  }
+
+  if (btn) btn.innerHTML = orgText;
+
   // Save order
   const orders = JSON.parse(localStorage.getItem('as_orders') || '[]');
   orders.push(order);
@@ -887,10 +922,40 @@ function submitOrder(e) {
 }
 
 // ─── Contact Form ─────────────────────────────────────────
-function submitContactForm(e) {
+async function submitContactForm(e) {
   e.preventDefault();
-  showToast('Enquiry sent! We will contact you within 24 hours.', 'success');
-  e.target.reset();
+  const btn = e.target.querySelector('button[type="submit"]');
+  const orgText = btn.textContent;
+  btn.textContent = 'Sending...';
+
+  const data = {
+    access_key: '582aaba0-a829-4b94-ac0e-e7055d8e4830',
+    subject: 'New Website Enquiry',
+    from_name: 'Aggarwal Steels Portal',
+    Name: document.getElementById('cName').value,
+    Phone: document.getElementById('cPhone').value,
+    Email: document.getElementById('cEmail').value,
+    Product_Interest: document.getElementById('cProduct').value,
+    Message: document.getElementById('cMsg').value,
+  };
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    if (res.ok) {
+      showToast('Enquiry sent! We will contact you within 24 hours.', 'success');
+      e.target.reset();
+    } else {
+      showToast('Failed to send enquiry. Please try again.', 'error');
+    }
+  } catch (err) {
+    showToast('Failed to send enquiry via network.', 'error');
+  } finally {
+    btn.textContent = orgText;
+  }
 }
 
 // ─── Admin Panel ──────────────────────────────────────────
