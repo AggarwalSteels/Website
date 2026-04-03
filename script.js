@@ -16,11 +16,11 @@ const GST_RATE      = 0.18;
 
 // Manufacturer/Make logos (public CDN URLs for real logos)
 const MAKERS = [
-  { id: 'amns', name: 'AM/NS India', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/ArcelorMittal_Nippon_Steel_India.svg/200px-ArcelorMittal_Nippon_Steel_India.svg.png' },
-  { id: 'sail', name: 'SAIL', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/0e/Steel_Authority_of_India_logo.svg/150px-Steel_Authority_of_India_logo.svg.png' },
-  { id: 'tata', name: 'Tata Steel', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Tata_logo.svg/150px-Tata_logo.svg.png' },
-  { id: 'jsw',  name: 'JSW Steel', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/b/bd/JSW_Group_logo.svg/200px-JSW_Group_logo.svg.png' },
-  { id: 'jspl', name: 'JSPL', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/f/ff/Jindal_Steel_%26_Power_Logo.svg/200px-Jindal_Steel_%26_Power_Logo.svg.png' }
+  { id: 'amns', name: 'AM/NS India', logo: 'images/make-amns.png' },
+  { id: 'sail', name: 'SAIL', logo: 'images/make-sail.png' },
+  { id: 'tata', name: 'Tata Steel', logo: 'images/make-tata.png' },
+  { id: 'jspl', name: 'Jindal Steel', logo: 'images/make-jindal.png' },
+  { id: 'jsla', name: 'Jindal Stainless', logo: 'images/make-jsla.png' }
 ];
 
 // ─── Product Catalogue ────────────────────────────────────
