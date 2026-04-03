@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.aggarwalsteels.com/sitemap.xml
+
+# Disallow admin access
+Disallow: /index.html#admin-panel-secret
