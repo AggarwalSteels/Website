@@ -4,9 +4,22 @@
 
 'use strict';
 
+// ─── Firebase Initialization ──────────────────────────────
+const firebaseConfig = {
+  apiKey: "AIzaSyChpQzNBc1Ww7SRFIl-Vci8_7hwI9jW3RY",
+  authDomain: "aggarwal-steel.firebaseapp.com",
+  databaseURL: "https://aggarwal-steel-default-rtdb.firebaseio.com",
+  projectId: "aggarwal-steel",
+  storageBucket: "aggarwal-steel.firebasestorage.app",
+  messagingSenderId: "1031124402234",
+  appId: "1:1031124402234:web:5199ca852c149356147503"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
 // ─── State ───────────────────────────────────────────────
 let cart            = JSON.parse(localStorage.getItem('as_cart') || '[]');
-let prices          = JSON.parse(localStorage.getItem('as_prices') || 'null');
+let prices          = null; // Loaded from Firebase
 let currentProduct  = null;
 let adminLoggedIn   = false;
 let phoneVerified   = false;
@@ -405,6 +418,30 @@ function getDefaultPrices() {
     p[id] = prod.defaultPrice;
   }
   return p;
+}
+
+function initFirebaseSync() {
+  db.ref('prices').on('value', (snapshot) => {
+    const data = snapshot.val();
+    if (data) {
+      prices = data;
+    } else {
+      prices = getDefaultPrices();
+    }
+    
+    // Live-update UI components if they are active
+    initTicker();
+    
+    const productPage = document.getElementById('page-product');
+    if (currentProduct && productPage && productPage.classList.contains('active')) {
+      renderProductPage(currentProduct);
+    }
+    
+    const adminPage = document.getElementById('page-admin');
+    if (adminPage && adminPage.classList.contains('active')) {
+      renderAdminPanel();
+    }
+  });
 }
 
 function getPrices() {
@@ -1027,27 +1064,37 @@ function savePrice(prodId) {
 
   prices = getPrices();
   prices[prodId] = val;
-  localStorage.setItem('as_prices', JSON.stringify(prices));
-  const now = new Date().toISOString();
-  localStorage.setItem('as_price_updated', now);
-  document.getElementById('lastUpdatedTime').textContent = new Date(now).toLocaleString('en-IN');
+  
+  db.ref('prices').set(prices)
+    .then(() => {
+      const now = new Date().toISOString();
+      localStorage.setItem('as_price_updated', now);
+      document.getElementById('lastUpdatedTime').textContent = new Date(now).toLocaleString('en-IN');
 
-  const tag = document.getElementById('savedTag_' + prodId);
-  tag.classList.add('show');
-  setTimeout(() => tag.classList.remove('show'), 2500);
-  showToast(`Price updated for ${PRODUCTS[prodId].name}`, 'success');
-  initTicker(); // Refresh ticker
+      const tag = document.getElementById('savedTag_' + prodId);
+      tag.classList.add('show');
+      setTimeout(() => tag.classList.remove('show'), 2500);
+      showToast(`Global price updated for ${PRODUCTS[prodId].name}`, 'success');
+    })
+    .catch((error) => {
+      console.error(error);
+      showToast('Error syncing price to cloud!', 'error');
+    });
 }
 
 function resetPrices() {
-  if (!confirm('Reset all prices to factory defaults?')) return;
+  if (!confirm('Reset all prices to factory defaults globally?')) return;
   prices = getDefaultPrices();
-  localStorage.setItem('as_prices', JSON.stringify(prices));
-  localStorage.removeItem('as_price_updated');
-  document.getElementById('lastUpdatedTime').textContent = '—';
-  renderAdminTable();
-  initTicker();
-  showToast('Prices reset to defaults', 'info');
+  db.ref('prices').set(prices)
+    .then(() => {
+      localStorage.removeItem('as_price_updated');
+      document.getElementById('lastUpdatedTime').textContent = '—';
+      showToast('All prices reset to factory defaults globally', 'info');
+    })
+    .catch((error) => {
+      console.error(error);
+      showToast('Error resetting prices in cloud', 'error');
+    });
 }
 
 // ─── Utilities ────────────────────────────────────────────
@@ -1058,7 +1105,7 @@ function formatNum(n) {
 
 // ─── Init ─────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  getPrices();
+  initFirebaseSync();
   renderCategoriesGrid();
   initTicker();
   updateCartBadge();
