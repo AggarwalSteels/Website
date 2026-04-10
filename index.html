@@ -882,6 +882,91 @@
 </div><!-- /page-admin -->
 
 
+<!-- Additional Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<!-- PDF Quote Template (Hidden) -->
+<div id="pdfQuoteTemplate" style="display:none;">
+  <div id="quotationDoc" class="pdf-document">
+    <div class="pdf-header">
+      <div class="pdf-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="50" height="50"><text y=".9em" font-size="90">⚙️</text></svg>
+        <div class="pdf-brand">
+          <span style="font-size:1.8rem;font-weight:800;color:var(--indigo, #1d1d60);">Aggarwal Steels</span><br>
+          <span style="font-size:0.9rem;color:#555;">Since 1990</span>
+        </div>
+      </div>
+      <div class="pdf-company-info">
+        <strong>Office & Yard:</strong><br>
+        Plot No. 680, Sector 59<br>
+        Faridabad, Haryana 121004<br>
+        <strong>GSTIN:</strong> 06AAFPA0130J1ZG
+      </div>
+    </div>
+    
+    <hr class="pdf-divider">
+    
+    <div class="pdf-title-row">
+      <h2 style="font-family:'Plus Jakarta Sans', sans-serif;font-weight:700;margin:0;color:#000;">PROFORMA QUOTATION</h2>
+      <div style="text-align:right;">
+        <strong>Date:</strong> <span id="pdfDate"></span><br>
+        <strong>Quote No:</strong> <span id="pdfQuoteNo"></span>
+      </div>
+    </div>
+    
+    <div class="pdf-table-container">
+      <table class="pdf-table">
+        <thead>
+          <tr>
+            <th width="8%">S.No.</th>
+            <th width="42%">Description of Goods</th>
+            <th width="15%">Origin</th>
+            <th width="10%" style="text-align:center">Qty (MT)</th>
+            <th width="10%" style="text-align:right">Rate (₹)</th>
+            <th width="15%" style="text-align:right">Amount (₹)</th>
+          </tr>
+        </thead>
+        <tbody id="pdfTableBody">
+          <!-- Populated by JS -->
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="pdf-totals">
+      <div class="pdf-totals-row">
+        <span>Subtotal (Excl. GST)</span>
+        <span id="pdfSubtotal"></span>
+      </div>
+      <div class="pdf-totals-row">
+        <span>Integrated GST (18%)</span>
+        <span id="pdfGstAmt"></span>
+      </div>
+      <div class="pdf-totals-row bold" style="font-size:1.1rem;margin-top:8px;padding-top:8px;border-top:1px solid #111;">
+        <span style="font-weight:800;">Grand Total</span>
+        <span id="pdfGrandTotal" style="font-weight:800;color:var(--indigo, #1d1d60);"></span>
+      </div>
+      <div style="text-align:right;font-size:0.8rem;color:#666;margin-top:4px;">
+        (Amounts in INR)
+      </div>
+    </div>
+    
+    <div class="pdf-terms">
+      <h4 style="margin:0 0 5px 0;"><b>Terms & Conditions:</b></h4>
+      <ol>
+        <li><strong>Validity:</strong> Prices quoted are valid for 24 hours from the date of quotation and subject to market fluctuations.</li>
+        <li><strong>Availability:</strong> Material is offered subject to prior sale. Please confirm stock before placing the order.</li>
+        <li><strong>Freight:</strong> Prices are Ex-Godown Faridabad. Transportation and cutting charges will be extra as applicable.</li>
+        <li><strong>GST:</strong> GST @ 18% is applicable. The estimate above applies flat 18% IGST. Final invoice will reflect CGST/SGST based on your exact state.</li>
+      </ol>
+    </div>
+    
+    <div class="pdf-footer">
+      This is a system generated quotation and does not require a physical signature.<br>
+      For order confirmation or queries, email <b>sales@aggarwalsteels.com</b> or visit www.aggarwalsteels.com.
+    </div>
+  </div>
+</div>
+
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.10.0/firebase-database-compat.js"></script>

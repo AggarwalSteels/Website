@@ -838,7 +838,76 @@ function renderCheckoutSummary() {
     <div class="cs-total-row"><span>Subtotal</span><span>₹${formatNum(subtotal)}</span></div>
     <div class="cs-total-row"><span>GST (18%)</span><span>₹${formatNum(gst)}</span></div>
     <div class="cs-total-row cs-grand"><span>Grand Total</span><span class="cs-val">₹${formatNum(grand)}</span></div>
+    <button class="btn btn-full btn-lg" onclick="generatePDFQuote()" style="margin-top:20px;display:flex;align-items:center;justify-content:center;gap:8px;background:transparent;border:2px solid var(--blue);color:var(--blue);font-weight:600;">
+      📄 Download PDF Quote
+    </button>
   `;
+}
+
+// ─── PDF Quotation Generator ──────────────────────────────
+async function generatePDFQuote() {
+  if (cart.length === 0) {
+    showToast('Your cart is empty', 'error');
+    return;
+  }
+  
+  showToast('Generating PDF Quote...', 'info');
+  
+  // Populate template
+  const today = new Date();
+  document.getElementById('pdfDate').textContent = today.toLocaleDateString('en-IN');
+  document.getElementById('pdfQuoteNo').textContent = 'AS-' + today.getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
+  
+  const subtotal = cart.reduce((sum, i) => sum + i.pricePerMT * i.qty, 0);
+  const gst = subtotal * GST_RATE;
+  
+  document.getElementById('pdfSubtotal').textContent = '₹' + formatNum(subtotal);
+  document.getElementById('pdfGstAmt').textContent = '₹' + formatNum(gst);
+  document.getElementById('pdfGrandTotal').textContent = '₹' + formatNum(subtotal + gst);
+  
+  const tbody = document.getElementById('pdfTableBody');
+  tbody.innerHTML = cart.map((item, idx) => {
+    const amount = item.pricePerMT * item.qty;
+    return `
+      <tr>
+        <td>${idx + 1}</td>
+        <td>
+          <strong>${item.name}</strong><br>
+          <span style="font-size:0.8rem;color:#555">${item.specs}</span>
+        </td>
+        <td>${item.make || '-'}</td>
+        <td style="text-align:center">${item.qty}</td>
+        <td style="text-align:right">${formatNum(item.pricePerMT)}</td>
+        <td style="text-align:right">${formatNum(amount)}</td>
+      </tr>
+    `;
+  }).join('');
+  
+  // Generate PDF
+  const element = document.getElementById('quotationDoc');
+  
+  // Temporarily display block so html2pdf can render it correctly
+  const container = document.getElementById('pdfQuoteTemplate');
+  container.style.display = 'block';
+  
+  try {
+    const opt = {
+      margin:       [0.5, 0.5, 0.5, 0.5],
+      filename:     'Aggarwal_Steels_Quotation.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2, useCORS: true },
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    
+    // Ensure the external library handles the offscreen generation properly
+    await window.html2pdf().set(opt).from(element).save();
+    showToast('PDF downloaded successfully!', 'success');
+  } catch (error) {
+    console.error('PDF Generation error:', error);
+    showToast('Failed to generate PDF', 'error');
+  } finally {
+    container.style.display = 'none'; // Hide it back
+  }
 }
 
 function validateCheckout() {
