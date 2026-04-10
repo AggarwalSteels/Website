@@ -851,62 +851,138 @@ async function generatePDFQuote() {
     return;
   }
   
-  showToast('Generating PDF Quote...', 'info');
+  showToast('Generating PDF Quotation...', 'info');
   
-  // Populate template
   const today = new Date();
-  document.getElementById('pdfDate').textContent = today.toLocaleDateString('en-IN');
-  document.getElementById('pdfQuoteNo').textContent = 'AS-' + today.getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
+  const dateStr = today.toLocaleDateString('en-IN');
+  const quoteNo = 'AS-' + today.getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
   
   const subtotal = cart.reduce((sum, i) => sum + i.pricePerMT * i.qty, 0);
   const gst = subtotal * GST_RATE;
+  const grand = subtotal + gst;
   
-  document.getElementById('pdfSubtotal').textContent = '₹' + formatNum(subtotal);
-  document.getElementById('pdfGstAmt').textContent = '₹' + formatNum(gst);
-  document.getElementById('pdfGrandTotal').textContent = '₹' + formatNum(subtotal + gst);
-  
-  const tbody = document.getElementById('pdfTableBody');
-  tbody.innerHTML = cart.map((item, idx) => {
+  // Build table rows
+  const rows = cart.map((item, idx) => {
     const amount = item.pricePerMT * item.qty;
     return `
       <tr>
-        <td>${idx + 1}</td>
-        <td>
+        <td style="padding:10px 12px;border-bottom:1px solid #eee;color:#333;">${idx + 1}</td>
+        <td style="padding:10px 12px;border-bottom:1px solid #eee;color:#333;">
           <strong>${item.name}</strong><br>
-          <span style="font-size:0.8rem;color:#555">${item.specs}</span>
+          <span style="font-size:0.78rem;color:#666;">${item.specs}</span>
         </td>
-        <td>${item.make || '-'}</td>
-        <td style="text-align:center">${item.qty}</td>
-        <td style="text-align:right">${formatNum(item.pricePerMT)}</td>
-        <td style="text-align:right">${formatNum(amount)}</td>
-      </tr>
-    `;
+        <td style="padding:10px 12px;border-bottom:1px solid #eee;color:#333;">${item.make || '—'}</td>
+        <td style="padding:10px 12px;border-bottom:1px solid #eee;color:#333;text-align:center;">${item.qty}</td>
+        <td style="padding:10px 12px;border-bottom:1px solid #eee;color:#333;text-align:right;">₹${formatNum(item.pricePerMT)}</td>
+        <td style="padding:10px 12px;border-bottom:1px solid #eee;color:#333;text-align:right;">₹${formatNum(amount)}</td>
+      </tr>`;
   }).join('');
   
-  // Generate PDF
-  const element = document.getElementById('quotationDoc');
+  // Build a fully self-contained HTML string (no CSS variables, no external dependencies)
+  const html = `
+  <div style="width:750px;background:#fff;color:#000;font-family:Inter,Helvetica,Arial,sans-serif;padding:40px;box-sizing:border-box;">
+    
+    <!-- Header -->
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+      <div>
+        <div style="font-size:1.9rem;font-weight:800;color:#1d1d60;letter-spacing:-0.5px;">Aggarwal Steels</div>
+        <div style="font-size:0.85rem;color:#888;margin-top:2px;">Quality Steel Since 1990</div>
+      </div>
+      <div style="text-align:right;font-size:0.88rem;line-height:1.6;color:#444;">
+        <strong>Office &amp; Yard:</strong><br>
+        Plot No. 680, Sector 59<br>
+        Faridabad, Haryana 121004<br>
+        <strong>GSTIN:</strong> 06AAFPA0130J1ZG
+      </div>
+    </div>
+    
+    <!-- Blue divider -->
+    <hr style="border:0;border-top:3px solid #0071e3;margin:18px 0 24px;">
+    
+    <!-- Title row -->
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;">
+      <h2 style="font-family:Inter,sans-serif;font-weight:700;margin:0;color:#1d1d60;font-size:1.5rem;letter-spacing:-0.3px;">PROFORMA QUOTATION</h2>
+      <div style="text-align:right;font-size:0.9rem;color:#333;">
+        <strong>Date:</strong> ${dateStr}<br>
+        <strong>Quote No:</strong> ${quoteNo}
+      </div>
+    </div>
+    
+    <!-- Items table -->
+    <table style="width:100%;border-collapse:collapse;margin-bottom:28px;font-size:0.88rem;">
+      <thead>
+        <tr>
+          <th style="background:#f0f0f5;padding:11px 12px;text-align:left;border-bottom:2px solid #ccc;color:#111;font-weight:600;" width="7%">S.No.</th>
+          <th style="background:#f0f0f5;padding:11px 12px;text-align:left;border-bottom:2px solid #ccc;color:#111;font-weight:600;" width="40%">Description of Goods</th>
+          <th style="background:#f0f0f5;padding:11px 12px;text-align:left;border-bottom:2px solid #ccc;color:#111;font-weight:600;" width="14%">Origin / Make</th>
+          <th style="background:#f0f0f5;padding:11px 12px;text-align:center;border-bottom:2px solid #ccc;color:#111;font-weight:600;" width="10%">Qty (MT)</th>
+          <th style="background:#f0f0f5;padding:11px 12px;text-align:right;border-bottom:2px solid #ccc;color:#111;font-weight:600;" width="13%">Rate (₹/MT)</th>
+          <th style="background:#f0f0f5;padding:11px 12px;text-align:right;border-bottom:2px solid #ccc;color:#111;font-weight:600;" width="16%">Amount (₹)</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+    
+    <!-- Totals box -->
+    <div style="width:320px;margin-left:auto;border:1px solid #ddd;padding:18px 20px;border-radius:8px;margin-bottom:36px;background:#fafafa;">
+      <div style="display:flex;justify-content:space-between;padding:5px 0;font-size:0.92rem;color:#333;">
+        <span>Subtotal (Excl. GST)</span>
+        <span>₹${formatNum(subtotal)}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:5px 0;font-size:0.92rem;color:#333;">
+        <span>Integrated GST (18%)</span>
+        <span>₹${formatNum(gst)}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:8px 0 0;margin-top:8px;border-top:2px solid #111;font-size:1.05rem;">
+        <span style="font-weight:800;color:#000;">Grand Total</span>
+        <span style="font-weight:800;color:#1d1d60;">₹${formatNum(grand)}</span>
+      </div>
+      <div style="text-align:right;font-size:0.75rem;color:#888;margin-top:4px;">(Amounts in INR)</div>
+    </div>
+    
+    <!-- Terms -->
+    <div style="font-size:0.82rem;color:#444;line-height:1.65;margin-bottom:36px;padding:18px 0;border-top:1px dashed #ccc;">
+      <div style="margin-bottom:6px;font-weight:700;color:#111;">Terms &amp; Conditions:</div>
+      <div style="padding-left:6px;">
+        1. <strong>Validity:</strong> Prices quoted are valid for 24 hours from the date of quotation and subject to market fluctuations.<br>
+        2. <strong>Availability:</strong> Material is offered subject to prior sale. Please confirm stock before placing the order.<br>
+        3. <strong>Freight:</strong> Prices are Ex-Godown Faridabad. Transportation and cutting charges will be extra as applicable.<br>
+        4. <strong>GST:</strong> GST @ 18% is applicable. The estimate above applies flat 18% IGST. Final invoice will reflect CGST/SGST based on your state.
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    <div style="text-align:center;font-size:0.78rem;color:#999;border-top:1px solid #eee;padding-top:18px;">
+      This is a system-generated quotation and does not require a physical signature.<br>
+      For order confirmation or queries, call <strong>+91-XXXXXXXXXX</strong> or visit <strong>www.aggarwalsteels.com</strong>
+    </div>
+  </div>`;
   
-  // Temporarily display block so html2pdf can render it correctly
-  const container = document.getElementById('pdfQuoteTemplate');
-  container.style.display = 'block';
+  // Create a temporary offscreen container for html2canvas to render
+  const wrapper = document.createElement('div');
+  wrapper.style.cssText = 'position:fixed;left:-9999px;top:0;z-index:-1;';
+  wrapper.innerHTML = html;
+  document.body.appendChild(wrapper);
+  
+  // Wait one animation frame so the browser completes layout
+  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
   
   try {
     const opt = {
-      margin:       [0.5, 0.5, 0.5, 0.5],
+      margin:       [0.4, 0.4, 0.4, 0.4],
       filename:     'Aggarwal_Steels_Quotation.pdf',
       image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2, useCORS: true },
-      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+      html2canvas:  { scale: 2, useCORS: true, logging: false },
+      jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
     };
     
-    // Ensure the external library handles the offscreen generation properly
-    await window.html2pdf().set(opt).from(element).save();
-    showToast('PDF downloaded successfully!', 'success');
+    await window.html2pdf().set(opt).from(wrapper.firstElementChild).save();
+    showToast('PDF downloaded successfully! ✅', 'success');
   } catch (error) {
     console.error('PDF Generation error:', error);
-    showToast('Failed to generate PDF', 'error');
+    showToast('Failed to generate PDF. Please try again.', 'error');
   } finally {
-    container.style.display = 'none'; // Hide it back
+    document.body.removeChild(wrapper);
   }
 }
 
