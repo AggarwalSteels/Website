@@ -10,7 +10,7 @@
   <meta property="og:description" content="Quality Steel. Delivered to Your Door. Browse HR, CR, GP, SS and more." />
   <meta property="og:type" content="website" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
 
   <!-- Local Business Schema -->
   <script type="application/ld+json">
@@ -102,16 +102,14 @@
       <div class="hero-content">
         <div class="hero-eyebrow">
           <span class="dot"></span>
-          India's Trusted Steel Marketplace
+          Decades of Reliability
         </div>
         <h1 class="hero-title font-display">
-          Quality Steel.<br>
-          <span class="accent">Delivered to</span><br>
-          Your Door.
+          Your Trusted<br>
+          <span class="accent">Steel Partner.</span>
         </h1>
         <p class="hero-desc">
-          From HR sheets to Stainless Steel — browse, configure, and order with full GST compliance. 
-          Aggarwal Steels brings Faridabad's finest steel straight to your facility.
+          Supplying high-grade Hot Rolled, Cold Rolled, Coated, and Stainless Steel to India's top manufacturers. We build long-term partnerships based on uncompromised quality, scale, and reliable delivery.
         </p>
         <div class="hero-actions">
           <button class="btn btn-primary btn-lg" onclick="showPage('home','#categories')">
@@ -129,14 +127,6 @@
           <div class="hero-stat">
             <div class="stat-num">500+</div>
             <div class="stat-label">Happy Clients</div>
-          </div>
-          <div class="hero-stat">
-            <div class="stat-num">7</div>
-            <div class="stat-label">Product Categories</div>
-          </div>
-          <div class="hero-stat">
-            <div class="stat-num">ISI</div>
-            <div class="stat-label">Certified Quality</div>
           </div>
         </div>
       </div>
@@ -337,6 +327,28 @@
   </footer>
 </div><!-- /page-home -->
 
+
+<!-- ═══════════════════════════════════════════════════════
+     SUB-CATEGORY PAGE
+     ═══════════════════════════════════════════════════════ -->
+  <div id="page-subcategory" class="page">
+    <div class="breadcrumb">
+      <div class="container">
+        <a href="#" onclick="showPage('home'); return false;">Home</a> / <span id="subcatBreadcrumbTitle">Category</span>
+      </div>
+    </div>
+    <div class="container" style="padding-top:40px; padding-bottom:60px;">
+      <button class="btn" id="subcatBackBtn" style="margin-bottom:20px; background:var(--bg-card); color:var(--text); border:1px solid var(--border);">
+        ← Back to Categories
+      </button>
+      <h1 id="subcatTitle" style="font-size:2.4rem; font-weight:800; color:var(--text); letter-spacing:-0.5px; margin-bottom:8px;">Category Title</h1>
+      <p id="subcatDesc" style="color:var(--text-mid); font-size:1.1rem; margin-bottom:40px;">Category Description</p>
+      
+      <div id="subcatGrid" class="subcat-grid">
+        <!-- JS injects sub-category cards here -->
+      </div>
+    </div>
+  </div>
 
 <!-- ═══════════════════════════════════════════════════════
      PAGE: PRODUCT DETAIL

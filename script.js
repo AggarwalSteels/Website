@@ -36,10 +36,38 @@ const MAKERS = [
   { id: 'jsla', name: 'Jindal Stainless', logo: 'images/make-jsla.png' }
 ];
 
+// ─── Product Categories (Broad) ───────────────────────────
+const CATEGORIES = {
+  hot_rolled: {
+    id: 'hot_rolled', name: 'HR (Hot Rolled)',
+    tagline: 'Sheets, Coils, Plates & Special Grades',
+    icon: '🔩', image: 'images/hr.png', color: '#e8a000',
+    products: ['hr', 'pmp', 'hrpo', 'hrsg', 'ar', 'hr_slit']
+  },
+  cold_rolled: {
+    id: 'cold_rolled', name: 'CRCA (Cold Rolled)',
+    tagline: 'Sheets, Coils, Slit & Special Grades',
+    icon: '🔧', image: 'images/cr.png', color: '#409cff',
+    products: ['cr', 'cr_slit', 'cr_special']
+  },
+  coated: {
+    id: 'coated', name: 'Coated Steel',
+    tagline: 'GP, GPSP, Galvalume, ZAM & Colour Coated',
+    icon: '🛡️', image: 'images/gp.png', color: '#34c759',
+    products: ['gp', 'gpsp', 'galvalume', 'zam', 'ppgi']
+  },
+  stainless: {
+    id: 'stainless', name: 'Stainless Steel (SS)',
+    tagline: 'Sheets, Coils & Plates — 202/304/316/430',
+    icon: '✨', image: 'images/ss.png', color: '#af52de',
+    products: ['ss']
+  }
+};
+
 // ─── Product Catalogue ────────────────────────────────────
 const PRODUCTS = {
   hr: {
-    id: 'hr',
+    id: 'hr', category: 'hot_rolled',
     name: 'HR Sheets & Coils',
     fullName: 'Hot Rolled Sheets & Coils',
     standard: 'IS 2062:2011 / IS 1079:2009',
@@ -93,8 +121,8 @@ const PRODUCTS = {
   },
 
   cr: {
-    id: 'cr',
-    name: 'CR Sheets & Coils',
+    id: 'cr', category: 'cold_rolled',
+    name: 'CRCA Sheets & Coils',
     fullName: 'Cold Rolled Sheets & Coils',
     standard: 'IS 513:2008 (CRCA)',
     icon: '🔧',
@@ -146,8 +174,8 @@ const PRODUCTS = {
   },
 
   gp: {
-    id: 'gp',
-    name: 'Galvanised Plain (GP)',
+    id: 'gp', category: 'coated',
+    name: 'GP / GI Sheets',
     fullName: 'Galvanised Plain (GP) Sheets & Coils',
     standard: 'IS 277:2008',
     icon: '🪣',
@@ -199,7 +227,7 @@ const PRODUCTS = {
   },
 
   gpsp: {
-    id: 'gpsp',
+    id: 'gpsp', category: 'coated',
     name: 'GPSP Sheets',
     fullName: 'Galvanised Plain Skin Pass (GPSP) Sheets',
     standard: 'IS 14358:1996',
@@ -247,7 +275,7 @@ const PRODUCTS = {
   },
 
   pmp: {
-    id: 'pmp',
+    id: 'pmp', category: 'hot_rolled',
     name: 'PMP Plates',
     fullName: 'Pressure & Mild Steel Plates (PMP)',
     standard: 'IS 2002:2009 / IS 2062',
@@ -300,8 +328,8 @@ const PRODUCTS = {
   },
 
   hrsg: {
-    id: 'hrsg',
-    name: 'HR Special Grade',
+    id: 'hrsg', category: 'hot_rolled',
+    name: 'Sailma / Tiston (High Tensile)',
     fullName: 'HR Special Grade Plates (Sailma / Boiler / Tiston)',
     standard: 'IS 2062 / IS 2002 / IRS T77',
     icon: '🔥',
@@ -358,7 +386,7 @@ const PRODUCTS = {
   },
 
   ss: {
-    id: 'ss',
+    id: 'ss', category: 'stainless',
     name: 'Stainless Steel',
     fullName: 'Stainless Steel Sheets, Coils & Plates',
     standard: 'IS 6911 / ASTM A240',
@@ -407,6 +435,175 @@ const PRODUCTS = {
         options: ['1000', '1219', '1250', '1500', '2000'],
         priceAdj: [0, 0, 0, 2000, 6000]
       }
+    ]
+  },
+
+  // ━━━ NEW: HRPO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  hrpo: {
+    id: 'hrpo', category: 'hot_rolled',
+    name: 'HRPO Coil / Sheets',
+    fullName: 'Hot Rolled Pickled & Oiled (HRPO) Sheets & Coils',
+    standard: 'IS 10748:2004',
+    icon: '🧪', image: 'images/hrpo.png', hsn: '7208',
+    defaultPrice: 55000, color: '#e8a000',
+    description: {
+      summary: 'HRPO steel is hot rolled steel that has been pickled in acid to remove oxide scale and then oiled to prevent rust. It offers a clean, smooth surface ideal for painting or powder coating.',
+      features: ['Acid-pickled surface — free from mill scale', 'Oiled for temporary corrosion protection', 'Superior surface for painting and coating', 'Tight thickness tolerances vs. standard HR', 'Grades: E250, E300, E350 per IS 2062', 'Available in coils and cut sheets']
+    },
+    specs: [['Standard', 'IS 10748:2004, IS 2062'], ['Thickness Range', '1.6 mm – 12 mm'], ['Width Range', '900 mm – 1500 mm'], ['Surface', 'Pickled & Oiled (P&O)'], ['Edge', 'Trim Edge / Slit Edge'], ['Coil ID', '610 mm']],
+    applications: ['Automotive Chassis', 'LPG Cylinders', 'Compressor Parts', 'Wheel Rims', 'Structural Tubes', 'Precision Fabrication'],
+    fields: [
+      { id: 'grade', label: 'Grade', type: 'select', options: ['E250A (CQ)', 'E250B (DQ)', 'E300', 'E350'], priceAdj: [0, 500, 1500, 3000] },
+      { id: 'thickness', label: 'Thickness (mm)', type: 'select', options: ['1.6', '2.0', '2.5', '3.0', '4.0', '5.0', '6.0', '8.0', '10.0', '12.0'], priceAdj: [800, 500, 200, 0, 0, 0, 200, 400, 800, 1200] },
+      { id: 'width', label: 'Width (mm)', type: 'select', options: ['900', '1000', '1219', '1250', '1500'], priceAdj: [0, 0, 0, 0, 500] }
+    ]
+  },
+
+  // ━━━ NEW: Abrasion Resistant ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ar: {
+    id: 'ar', category: 'hot_rolled',
+    name: 'Abrasion Resistant Steel',
+    fullName: 'Abrasion Resistant (AR) Steel Plates',
+    standard: 'IS 2831 / EN 10029',
+    icon: '🛡️', image: 'images/ar.png', hsn: '7208',
+    defaultPrice: 95000, color: '#e8a000',
+    description: {
+      summary: 'Abrasion Resistant (AR) steel plates are heat-treated, high-hardness plates for severe wear environments. Brands include SAIL Rockhard, Hardox (SSAB), Tiscral (Tata), and Sail Hard.',
+      features: ['Brinell Hardness: HB300/HB360/HB400/HB450/HB500', 'Brands: Rockhard / Hardox / Sail Hard / Tiscral', 'Through-hardened or surface-hardened', 'Excellent impact and wear resistance', 'Weldable with low-hydrogen electrodes', 'MTC with hardness test report']
+    },
+    specs: [['Standard', 'IS 2831, EN 10029, Proprietary'], ['Thickness', '6 mm – 80 mm'], ['Width', '1500 mm – 3000 mm'], ['Hardness Range', 'HB300 – HB500'], ['Brands', 'Rockhard / Hardox / Sail Hard / Tiscral'], ['Heat Treatment', 'Quenched & Tempered']],
+    applications: ['Mining & Quarrying', 'Cement Plants', 'Bulldozer Blades', 'Dump Truck Liners', 'Crusher Jaws', 'Chutes & Hoppers'],
+    fields: [
+      { id: 'grade', label: 'Hardness Grade', type: 'select', options: ['HB300 (Mild Wear)', 'HB360 (Medium Wear)', 'HB400 (Heavy Wear)', 'HB450 (Severe Wear)', 'HB500 (Extreme Wear)'], priceAdj: [0, 5000, 10000, 18000, 28000] },
+      { id: 'thickness', label: 'Thickness (mm)', type: 'select', options: ['6', '8', '10', '12', '16', '20', '25', '32', '40', '50', '60', '80'], priceAdj: [0, 0, 0, 0, 500, 1000, 2000, 3000, 5000, 8000, 12000, 18000] },
+      { id: 'width', label: 'Width (mm)', type: 'select', options: ['1500', '2000', '2500', '3000'], priceAdj: [0, 500, 1000, 2000] }
+    ]
+  },
+
+  // ━━━ NEW: HR Slit Coils ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  hr_slit: {
+    id: 'hr_slit', category: 'hot_rolled',
+    name: 'HR Slit Coils',
+    fullName: 'Hot Rolled Slit Coils (Custom Width)',
+    standard: 'IS 2062:2011',
+    icon: '🔄', image: 'images/hr-slit.png', hsn: '7208',
+    defaultPrice: 53500, color: '#e8a000',
+    description: {
+      summary: 'HR Slit Coils are produced by slitting wide HR mother coils into narrower widths using precision rotary slitting lines. Ideal for tube mills, roll forming, and narrow-width structural applications.',
+      features: ['Custom slit from HR mother coils', 'Minimum slit width from 25 mm', 'Tight width tolerances (±0.2 mm)', 'Slit edge — burr-free on request', 'Grades: E250A, E250B, E300, E350', 'Coil ID: 508 mm or 610 mm']
+    },
+    specs: [['Standard', 'IS 2062:2011'], ['Thickness', '1.6 mm – 12 mm'], ['Slit Width', '25 mm – 500 mm'], ['Mother Coil Width', '900 mm – 1500 mm'], ['Edge', 'Slit Edge (burr-free available)'], ['Coil ID', '508 mm / 610 mm']],
+    applications: ['ERW Tube Mills', 'Roll Forming', 'Automotive Strips', 'Narrow Structural Sections', 'Spring Steel', 'Shutter Strips'],
+    fields: [
+      { id: 'grade', label: 'Grade', type: 'select', options: ['E250A (Fe 410-S)', 'E250B (Fe 410-W)', 'E300', 'E350'], priceAdj: [0, 500, 1200, 2500] },
+      { id: 'thickness', label: 'Thickness (mm)', type: 'select', options: ['1.6', '2.0', '2.5', '3.0', '4.0', '5.0', '6.0', '8.0', '10.0', '12.0'], priceAdj: [0, 0, 0, 0, 0, 0, 200, 400, 800, 1200] },
+      { id: 'width', label: 'Slit Width (mm)', type: 'select', options: ['25–50', '50–100', '100–200', '200–300', '300–500'], priceAdj: [3000, 2000, 1000, 500, 0] }
+    ]
+  },
+
+  // ━━━ NEW: CR Slit Coils ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  cr_slit: {
+    id: 'cr_slit', category: 'cold_rolled',
+    name: 'CR Slit Coils',
+    fullName: 'Cold Rolled Slit Coils (Custom Width)',
+    standard: 'IS 513:2008',
+    icon: '🔄', image: 'images/cr-slit.png', hsn: '7209',
+    defaultPrice: 62000, color: '#409cff',
+    description: {
+      summary: 'CR Slit Coils are precision-slit from CRCA mother coils to achieve narrow custom widths. The bright, smooth surface of cold-rolled steel is preserved during slitting.',
+      features: ['Precision slit from CRCA master coils', 'Width tolerance ±0.1 mm achievable', 'Burr-free edges on request', 'Available in all CR grades (CR1–CR5)', 'Ideal for stamping, forming, roll-forming', 'Coil ID: 508 mm standard']
+    },
+    specs: [['Standard', 'IS 513:2008'], ['Thickness', '0.4 mm – 3.0 mm'], ['Slit Width', '20 mm – 500 mm'], ['Surface', 'Matte / Bright Annealed'], ['Edge', 'Slit Edge (burr-free available)'], ['Coil ID', '508 mm / 610 mm']],
+    applications: ['Stamping Dies', 'Roll Formed Sections', 'Cable Trays', 'Auto Components', 'Electrical Connectors', 'Spring Washers'],
+    fields: [
+      { id: 'grade', label: 'Grade', type: 'select', options: ['CR1 (CQ)', 'CR2 (DQ)', 'CR3 (DDQ)', 'CR4 (EDDQ)'], priceAdj: [0, 1000, 2500, 4000] },
+      { id: 'thickness', label: 'Thickness (mm)', type: 'select', options: ['0.40', '0.50', '0.63', '0.80', '1.00', '1.20', '1.50', '2.00', '2.50', '3.00'], priceAdj: [1000, 800, 600, 400, 0, 0, 0, 0, -200, -300] },
+      { id: 'width', label: 'Slit Width (mm)', type: 'select', options: ['20–50', '50–100', '100–200', '200–300', '300–500'], priceAdj: [3500, 2500, 1200, 600, 0] }
+    ]
+  },
+
+  // ━━━ NEW: CR Special Grades ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  cr_special: {
+    id: 'cr_special', category: 'cold_rolled',
+    name: 'CR Special Grades',
+    fullName: 'CR Special Grades — IF / Dual Phase / AHSS',
+    standard: 'IS 15814 / JIS G3135',
+    icon: '⚡', image: 'images/cr-special.png', hsn: '7209',
+    defaultPrice: 70000, color: '#409cff',
+    description: {
+      summary: 'Advanced CR grades including Interstitial Free (IF) steel for ultra-deep drawing and Dual Phase (DP) / AHSS grades for high-strength automotive applications.',
+      features: ['IF Steel — Ultra-low carbon, superior formability', 'DP 380/440/590/780/980 — Dual Phase AHSS', 'High strength-to-weight ratio', 'Excellent crash energy absorption (automotive)', 'Tight thickness and flatness tolerances', 'Available with corrosion-resistant coatings']
+    },
+    specs: [['Standard', 'IS 15814, JIS G3135, VDA 239-100'], ['Thickness', '0.5 mm – 2.5 mm'], ['Width', '900 mm – 1500 mm'], ['IF Grades', 'IF-CQ / IF-DQ / IF-DDQ / IF-EDDQ'], ['DP Grades', 'DP 380 / DP 440 / DP 590 / DP 780 / DP 980'], ['Tensile Strength', '270 MPa – 1000 MPa']],
+    applications: ['Automotive Body Panels', 'BIW (Body in White)', 'Crash Structures', 'Door Inners/Outers', 'Bumper Reinforcements', 'Seat Structures'],
+    fields: [
+      { id: 'grade', label: 'Grade', type: 'select', options: ['IF Steel (CQ)', 'IF Steel (DDQ)', 'DP 380', 'DP 440', 'DP 590', 'DP 780', 'DP 980'], priceAdj: [0, 2000, 3000, 5000, 8000, 14000, 22000] },
+      { id: 'thickness', label: 'Thickness (mm)', type: 'select', options: ['0.50', '0.60', '0.80', '1.00', '1.20', '1.50', '1.80', '2.00', '2.50'], priceAdj: [1000, 800, 400, 0, 0, 0, 0, -200, -400] },
+      { id: 'width', label: 'Width (mm)', type: 'select', options: ['900', '1000', '1219', '1250', '1500'], priceAdj: [0, 0, 0, 0, 500] }
+    ]
+  },
+
+  // ━━━ NEW: Galvalume ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  galvalume: {
+    id: 'galvalume', category: 'coated',
+    name: 'Galvalume / GL',
+    fullName: 'Galvalume (GL) — Aluminium-Zinc Coated Steel',
+    standard: 'IS 15961:2012',
+    icon: '🔆', image: 'images/galvalume.png', hsn: '7210',
+    defaultPrice: 78000, color: '#34c759',
+    description: {
+      summary: 'Galvalume steel is coated with 55% Aluminium, 43.5% Zinc, 1.5% Silicon alloy. It offers 2–6x longer life than standard galvanised steel, especially in coastal and industrial environments.',
+      features: ['55% Al-Zn alloy coating (superior corrosion resistance)', 'Coating: AZ070, AZ100, AZ150, AZ185', '2–6x life of standard GP in corrosive environments', 'Excellent heat reflectivity', 'Tight bend radius for profiling', 'Perfect base for colour coating (PPGL)']
+    },
+    specs: [['Standard', 'IS 15961:2012, ASTM A792'], ['Base Metal', 'Cold Rolled Steel'], ['Thickness', '0.30 mm – 1.60 mm'], ['Width', '914 mm – 1250 mm'], ['Coating', 'AZ070 / AZ100 / AZ150 / AZ185'], ['Surface', 'Regular / Anti-Fingerprint (AFP)']],
+    applications: ['Metal Roofing', 'Wall Cladding', 'Solar Panel Frames', 'HVAC Ducting', 'Prefab Structures', 'Industrial Sheds'],
+    fields: [
+      { id: 'coating', label: 'Al-Zn Coating', type: 'select', options: ['AZ070', 'AZ100', 'AZ150', 'AZ185'], priceAdj: [0, 1500, 3000, 5000] },
+      { id: 'thickness', label: 'Thickness (mm)', type: 'select', options: ['0.30', '0.40', '0.45', '0.50', '0.55', '0.63', '0.80', '1.00', '1.20', '1.60'], priceAdj: [2000, 1500, 1000, 600, 300, 0, 0, 0, -200, -500] },
+      { id: 'width', label: 'Width (mm)', type: 'select', options: ['914', '1000', '1219', '1250'], priceAdj: [0, 0, 0, 200] }
+    ]
+  },
+
+  // ━━━ NEW: ZAM ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  zam: {
+    id: 'zam', category: 'coated',
+    name: 'ZAM (Magnelis / Magsure)',
+    fullName: 'ZAM — Zinc-Aluminium-Magnesium Alloy Coated Steel',
+    standard: 'Proprietary (EN 10346 base)',
+    icon: '💎', image: 'images/zam.png', hsn: '7210',
+    defaultPrice: 85000, color: '#34c759',
+    description: {
+      summary: 'ZAM® is next-generation coated steel with a Zn-Al-Mg alloy layer. It provides 5–10x corrosion resistance vs. standard GI, with self-healing capability at cut edges. Brands: Magnelis (ArcelorMittal), Magsure (Tata).',
+      features: ['Zn-Al-Mg ternary alloy coating', '5–10x corrosion resistance vs. standard GI', 'Self-healing at cut edges and scratches', 'Thinner coating = same protection (weight saving)', 'Excellent for outdoor/aggressive environments', 'Brands: ZAM / Magnelis / Magsure / SuperDyma']
+    },
+    specs: [['Standard', 'Proprietary (EN 10346 base)'], ['Coating Composition', 'Zn – 6% Al – 3% Mg (typical)'], ['Thickness', '0.4 mm – 2.0 mm'], ['Width', '900 mm – 1250 mm'], ['Coating Weight', '60 – 275 g/m²'], ['Surface', 'Smooth / Anti-Fingerprint']],
+    applications: ['Solar Structures', 'Telecom Towers', 'Highway Guardrails', 'Cable Trays', 'Agricultural Equipment', 'Outdoor Enclosures'],
+    fields: [
+      { id: 'coating', label: 'Coating Weight (g/m²)', type: 'select', options: ['ZM060 (60 g/m²)', 'ZM090 (90 g/m²)', 'ZM120 (120 g/m²)', 'ZM180 (180 g/m²)', 'ZM275 (275 g/m²)'], priceAdj: [0, 1000, 2500, 4500, 8000] },
+      { id: 'thickness', label: 'Thickness (mm)', type: 'select', options: ['0.40', '0.50', '0.63', '0.80', '1.00', '1.20', '1.50', '2.00'], priceAdj: [1500, 1000, 500, 200, 0, 0, -200, -500] },
+      { id: 'width', label: 'Width (mm)', type: 'select', options: ['900', '1000', '1219', '1250'], priceAdj: [0, 0, 0, 200] }
+    ]
+  },
+
+  // ━━━ NEW: Colour Coated (PPGI/PPGL) ━━━━━━━━━━━━━━━━━━━
+  ppgi: {
+    id: 'ppgi', category: 'coated',
+    name: 'Colour Coated (PPGI/PPGL)',
+    fullName: 'Pre-Painted Steel — PPGI & PPGL Coils',
+    standard: 'IS 14772:2000',
+    icon: '🎨', image: 'images/ppgi.png', hsn: '7210',
+    defaultPrice: 82000, color: '#34c759',
+    description: {
+      summary: 'Colour Coated steel (PPGI = Pre-Painted GI, PPGL = Pre-Painted Galvalume) is factory-coated with polyester, SMP, PVDF, or PVC plastisol paint. Available in RAL colour shades.',
+      features: ['PPGI (GI base) and PPGL (Galvalume base) available', 'Paint systems: Regular PE / SMP / PVDF / HDP', 'Top coat thickness: 15–25 µm standard', 'RAL / custom colour shades available', 'Reverse side: primer or full paint', 'Excellent weathering resistance (10–25 yr warranty)']
+    },
+    specs: [['Standard', 'IS 14772:2000, ASTM A755'], ['Base Metal', 'GI (GP) or Galvalume (GL)'], ['Thickness', '0.23 mm – 1.00 mm (TCT)'], ['Width', '914 mm – 1250 mm'], ['Paint System', 'Regular PE / SMP / PVDF / HDP'], ['Top Paint', '15 / 20 / 25 µm']],
+    applications: ['Metal Roofing & Cladding', 'Sandwich Panels', 'Rolling Shutters', 'Container Houses', 'Modular Buildings', 'Signage & Fascia'],
+    fields: [
+      { id: 'base', label: 'Base Metal', type: 'select', options: ['PPGI (Galvanised base)', 'PPGL (Galvalume base)'], priceAdj: [0, 4000] },
+      { id: 'paint', label: 'Paint System', type: 'select', options: ['Regular Polyester (PE)', 'SMP (Silicon Modified)', 'PVDF (Premium Weather)', 'HDP (High Durability)'], priceAdj: [0, 3000, 8000, 5000] },
+      { id: 'thickness', label: 'Thickness TCT (mm)', type: 'select', options: ['0.23', '0.30', '0.35', '0.40', '0.45', '0.47', '0.50', '0.60', '0.80', '1.00'], priceAdj: [2500, 2000, 1500, 1000, 500, 300, 0, 0, -300, -600] },
+      { id: 'width', label: 'Width (mm)', type: 'select', options: ['914', '1000', '1090', '1219', '1250'], priceAdj: [0, 0, 0, 0, 200] }
     ]
   }
 };
@@ -521,12 +718,14 @@ function showToast(msg, type = 'info') {
 function initTicker() {
   const p = getPrices();
   const items = [
-    { name: 'HR (IS 2062 E250A)', price: p.hr },
-    { name: 'CR (IS 513 CR2)', price: p.cr },
-    { name: 'GP (Z120)', price: p.gp },
-    { name: 'GPSP (Z180)', price: p.gpsp },
-    { name: 'PMP Plates (E250)', price: p.pmp },
-    { name: 'HR Sailma 350', price: p.hrsg },
+    { name: 'HR (IS 2062)', price: p.hr },
+    { name: 'HRPO (Pickled)', price: p.hrpo },
+    { name: 'CRCA (IS 513)', price: p.cr },
+    { name: 'GP (Galvanised)', price: p.gp },
+    { name: 'Galvalume (AZ150)', price: p.galvalume },
+    { name: 'Colour Coated', price: p.ppgi },
+    { name: 'PMP Plates', price: p.pmp },
+    { name: 'Sailma (High Tensile)', price: p.hrsg },
     { name: 'SS 304 (2B)', price: p.ss }
   ];
 
@@ -552,15 +751,57 @@ function initTicker() {
 function renderCategoriesGrid() {
   const grid = document.getElementById('categoriesGrid');
   if (!grid) return;
-  grid.innerHTML = Object.values(PRODUCTS).map(p => `
-    <div class="cat-card" onclick="openProduct('${p.id}')" role="button" tabindex="0" 
-         onkeydown="if(event.key==='Enter')openProduct('${p.id}')">
-      <div class="cat-img"><img src="${p.image}" alt="${p.name}" loading="lazy" /></div>
-      <div class="cat-name">${p.name}</div>
-      <div class="cat-sub">${p.standard}</div>
-      <div class="cat-arrow">Explore →</div>
+  grid.innerHTML = Object.values(CATEGORIES).map(cat => `
+    <div class="cat-card cat-card-broad" onclick="openSubCategory('${cat.id}')" role="button" tabindex="0" 
+         onkeydown="if(event.key==='Enter')openSubCategory('${cat.id}')">
+      <div class="cat-img"><img src="${cat.image}" alt="${cat.name}" loading="lazy" /></div>
+      <div class="cat-name">${cat.name}</div>
+      <div class="cat-sub">${cat.tagline}</div>
+      <div class="cat-count">${cat.products.length} product${cat.products.length > 1 ? 's' : ''}</div>
+      <div class="cat-arrow">Browse →</div>
     </div>
   `).join('');
+}
+
+// ─── Sub-Category Page ────────────────────────────────────
+function openSubCategory(catId) {
+  const cat = CATEGORIES[catId];
+  if (!cat) return;
+  // If category has only 1 product, go directly to it
+  if (cat.products.length === 1) {
+    openProduct(cat.products[0]);
+    return;
+  }
+  renderSubCategoryPage(cat);
+  showPage('subcategory');
+}
+
+function renderSubCategoryPage(cat) {
+  document.getElementById('subcatTitle').textContent = cat.name;
+  document.getElementById('subcatDesc').textContent = cat.tagline;
+  document.getElementById('subcatBackBtn').onclick = () => showPage('home');
+
+  const grid = document.getElementById('subcatGrid');
+  const prices = getPrices();
+  grid.innerHTML = cat.products.map(prodId => {
+    const p = PRODUCTS[prodId];
+    if (!p) return '';
+    const price = prices[p.id] || p.defaultPrice;
+    return `
+      <div class="subcat-card" onclick="openProduct('${p.id}')" role="button" tabindex="0"
+           onkeydown="if(event.key==='Enter')openProduct('${p.id}')">
+        <div class="subcat-img"><img src="${p.image}" alt="${p.name}" loading="lazy" /></div>
+        <div class="subcat-body">
+          <div class="subcat-icon">${p.icon}</div>
+          <h3 class="subcat-name">${p.name}</h3>
+          <div class="subcat-standard">${p.standard}</div>
+          <p class="subcat-summary">${p.description.summary.substring(0, 120)}...</p>
+          <div class="subcat-price">From ₹${formatNum(price)}/MT</div>
+          <div class="subcat-arrow">Configure & Order →</div>
+        </div>
+      </div>
+    `;
+  }).join('');
 }
 
 // ─── Product Page ─────────────────────────────────────────
